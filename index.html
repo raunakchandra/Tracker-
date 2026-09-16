@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Logbook — a paper-and-ink tracker</title>
+<meta name="description" content="A self-hosted logbook for sleep, study and focus — bar-and-line charts, streaks and a monthly journal, styled like a real notebook." />
+<meta name="theme-color" content="#F6F3EC" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236B9E4F'/%3E%3Cpath d='M9 22V10h3.2l4 8.4V10H19v12h-3.2l-4-8.4V22H9z' fill='%23F6F3EC'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="banner" id="storageBanner" role="status" hidden>
+  <span class="icon" data-icon="info"></span>
+  <span>Preview mode — changes here won't be saved. Host this file (see the README) to keep your logs between visits.</span>
+  <button class="banner__close" id="bannerClose" type="button" aria-label="Dismiss">
+    <span class="icon" data-icon="x"></span>
+  </button>
+</div>
+
+<div class="app" id="app" data-tab="dashboard">
+
+  <!-- ============ Navigation rail (desktop: left, mobile: bottom) ============ -->
+  <nav class="tabrail" id="tabrail" aria-label="Sections">
+    <div class="tabrail__brand">
+      <span class="tabrail__brandmark" aria-hidden="true">L</span>
+      <span class="tabrail__brandname">Logbook</span>
+    </div>
+
+    <div class="tabrail__items" role="tablist">
+      <button class="tabrail__item" data-tab="dashboard" role="tab" aria-selected="true">
+        <span class="tabrail__icon" data-icon="grid"></span>
+        <span class="tabrail__label">Today</span>
+      </button>
+      <button class="tabrail__item" data-tab="sleep" role="tab" aria-selected="false">
+        <span class="tabrail__icon" data-icon="moon"></span>
+        <span class="tabrail__label">Sleep</span>
+      </button>
+      <button class="tabrail__item" data-tab="study" role="tab" aria-selected="false">
+        <span class="tabrail__icon" data-icon="book"></span>
+        <span class="tabrail__label">Study</span>
+      </button>
+      <button class="tabrail__item" data-tab="distraction" role="tab" aria-selected="false">
+        <span class="tabrail__icon" data-icon="bolt"></span>
+        <span class="tabrail__label">Focus</span>
+      </button>
+      <button class="tabrail__item" data-tab="journal" role="tab" aria-selected="false">
+        <span class="tabrail__icon" data-icon="calendar"></span>
+        <span class="tabrail__label">Journal</span>
+      </button>
+      <button class="tabrail__item" data-tab="settings" role="tab" aria-selected="false">
+        <span class="tabrail__icon" data-icon="gear"></span>
+        <span class="tabrail__label">Settings</span>
+      </button>
+    </div>
+
+    <button class="tabrail__theme" id="themeToggle" type="button" aria-label="Switch to dark mode">
+      <span class="tabrail__icon" data-icon="sun" id="themeIconSun"></span>
+      <span class="tabrail__icon" data-icon="moon-solid" id="themeIconMoon"></span>
+      <span class="tabrail__label" id="themeLabel">Light</span>
+    </button>
+  </nav>
+
+  <!-- ============ Main page ============ -->
+  <main class="main">
+    <div class="page" id="page">
+      <!-- injected by script.js -->
+    </div>
+  </main>
+</div>
+
+<!-- Slide-in index-card panel used for every add/edit form -->
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="panel__pin" aria-hidden="true"></div>
+  <div class="panel__inner" id="panelInner"></div>
+</aside>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Hidden file input used for importing a backup -->
+<input type="file" id="importInput" accept="application/json" hidden />
+
+<script src="script.js"></script>
+</body>
+</html>
